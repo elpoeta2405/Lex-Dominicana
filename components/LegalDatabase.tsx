@@ -69,9 +69,9 @@ const LegalDatabase: React.FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-xl max-w-5xl mx-auto p-8 transition-colors duration-300">
-      <h2 className="text-2xl font-bold text-gray-800 dark:text-slate-100 mb-2">Base de Datos Jurídica</h2>
-      <p className="text-gray-600 dark:text-slate-400 mb-6">Busque en todo el cuerpo normativo de la República Dominicana.</p>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-5xl mx-auto p-8">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Base de Datos Jurídica</h2>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">Busque en todo el cuerpo normativo de la República Dominicana.</p>
 
       <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4 mb-8">
         <div className="relative flex-grow">
@@ -80,14 +80,15 @@ const LegalDatabase: React.FC = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar por palabra clave, ej: 'difamación en redes sociales'"
-            className="w-full p-3 pl-10 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors duration-200"
+            className="w-full p-3 pl-10 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:outline-none dark:text-white"
           />
-          <SearchIcon className="h-5 w-5 text-gray-400 dark:text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <SearchIcon className="h-5 w-5 text-gray-400 dark:text-gray-500 absolute left-3 top-1/2 -translate-y-1/2" />
         </div>
         <button
           type="submit"
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-blue-300 transition-colors flex items-center justify-center"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-blue-300 transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
+          <SearchIcon className="h-5 w-5 mr-2 sm:hidden"/>
           Buscar
         </button>
       </form>
@@ -95,22 +96,25 @@ const LegalDatabase: React.FC = () => {
       <div className="space-y-4">
         {results.length > 0 ? (
           results.map((result) => (
-            <div key={result.id} className="border border-slate-200 dark:border-slate-700 rounded-lg p-4 hover:shadow-md hover:bg-slate-50 dark:hover:bg-slate-700/[.5] transition-shadow">
-              <div className="flex justify-between items-start">
-                  <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-400">{result.title}</h3>
-                  <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                      result.status === 'Vigente' ? 'bg-green-100 text-green-800 dark:bg-green-900/[.4] dark:text-green-300' : 
-                      result.status === 'Modificada' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/[.4] dark:text-yellow-300' : 'bg-red-100 text-red-800 dark:bg-red-900/[.4] dark:text-red-300'
+            <div key={result.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 bg-gray-50/50 dark:bg-gray-800/50">
+              <div className="flex justify-between items-start gap-4">
+                  <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-300">{result.title}</h3>
+                  <span className={`flex-shrink-0 mt-1 px-2.5 py-0.5 text-xs font-semibold rounded-full ${
+                      result.status === 'Vigente' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 
+                      result.status === 'Modificada' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
                   }`}>
                       {result.status}
                   </span>
               </div>
-              <p className="text-sm text-gray-500 dark:text-slate-400 mb-2">{result.type} No. {result.number} - {result.date}</p>
-              <p className="text-gray-700 dark:text-slate-300">{result.snippet}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{result.type} No. {result.number} - {result.date}</p>
+              <p className="text-gray-700 dark:text-gray-300">{result.snippet}</p>
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500 dark:text-slate-400 py-8">Realice una búsqueda para ver los resultados.</p>
+          <div className="text-center text-gray-500 dark:text-gray-400 py-12 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+            <p>Realice una búsqueda para ver los resultados.</p>
+            <p className="text-sm mt-1">Si deja el campo en blanco, se mostrarán algunos documentos de ejemplo.</p>
+          </div>
         )}
       </div>
     </div>

@@ -12,7 +12,6 @@ export interface DocumentTemplate {
   title: string;
   description: string;
   fields: DocumentField[];
-  generateText: (data: { [key: string]: string }) => string;
 }
 
 export interface DocumentField {
