@@ -1,22 +1,11 @@
 {
-  "name": "lex-dominicana:-tu-asistente-legal-virtual",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "lex-dominicana",
+  "version": "1.0.0",
+  "description": "Asistente Legal Virtual para la República Dominicana",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "echo 'No build step required for static assets'"
   },
   "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "@google/genai": "^1.9.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
   }
 }
